@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
     
@@ -16,7 +17,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        database()
+        simpleDatabase()
+        realtionalDatabase()
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,20 +27,45 @@ class ViewController: UIViewController {
     }
     
 //    MARK: Database
-    func database(){
+    func simpleDatabase(){
 //        Database Location: /Users/<USER>/Library/Developer/CoreSimulator/Devices/<DEVICE_ID>/data/Containers/Data/Application/<APPLICATION_ID>/Documents/SingleViewCoreData.sqlite.
         
 //        Create New Person
-//        db.createNewPerson()
+        db.createNewPerson()
         
 //        Update First Person
-//        db.updateFirstPerson()
+        db.updateFirstPerson()
         
 //        Delete First Person
-//        db.deleteFirstPerson()
+        db.deleteFirstPerson()
         
 //        Fetch Person
         db.getAllPersons()
+    }
+    
+    func realtionalDatabase(){
+//        Add Address to Person
+        let newPerson: NSManagedObject = db.createNewPerson()
+        let newAddress: NSManagedObject = db.createNewAddress()
+        db.addAddressToPerson(newPerson, newAddress: newAddress)
+        
+        // Update Relationship
+        let updatePersons: [NSManagedObject] = db.getAllPersons()
+        if(updatePersons.count > 0){
+            let oldPerson: NSManagedObject = updatePersons[0]
+            db.updateRelationship(oldPerson)
+        }else{
+            print("Persons Count: \(updatePersons.count)")
+        }
+        
+        // Delete Relationship
+        let persons: [NSManagedObject] = db.getAllPersons()
+        if(persons.count > 0){
+            let oldPerson: NSManagedObject = persons[0]
+            db.updateRelationship(oldPerson)
+        }else{
+            print("Persons Count: \(persons.count)")
+        }
     }
 }
 
