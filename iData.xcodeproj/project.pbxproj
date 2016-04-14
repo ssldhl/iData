@@ -99,13 +99,14 @@
 		77BED5721CBF68AA00E55660 /* iData */ = {
 			isa = PBXGroup;
 			children = (
+				77BED5A61CBF797C00E55660 /* Service */,
+				77BED5A51CBF796A00E55660 /* Controller */,
+				77BED5A41CBF795D00E55660 /* Model */,
 				77BED5731CBF68AA00E55660 /* AppDelegate.swift */,
-				77BED5751CBF68AA00E55660 /* ViewController.swift */,
 				77BED5771CBF68AA00E55660 /* Main.storyboard */,
 				77BED57D1CBF68AA00E55660 /* Assets.xcassets */,
 				77BED57F1CBF68AA00E55660 /* LaunchScreen.storyboard */,
 				77BED5821CBF68AA00E55660 /* Info.plist */,
-				77BED57A1CBF68AA00E55660 /* iData.xcdatamodeld */,
 			);
 			path = iData;
 			sourceTree = "<group>";
@@ -126,6 +127,29 @@
 				77BED5981CBF68AB00E55660 /* Info.plist */,
 			);
 			path = iDataUITests;
+			sourceTree = "<group>";
+		};
+		77BED5A41CBF795D00E55660 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				77BED57A1CBF68AA00E55660 /* iData.xcdatamodeld */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		77BED5A51CBF796A00E55660 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				77BED5751CBF68AA00E55660 /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		77BED5A61CBF797C00E55660 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
