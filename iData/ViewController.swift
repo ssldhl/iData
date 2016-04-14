@@ -26,7 +26,19 @@ class ViewController: UIViewController {
     
 //    MARK: Database
     func database(){
-        db.createNewPerson()
+//        Database Location: /Users/<USER>/Library/Developer/CoreSimulator/Devices/<DEVICE_ID>/data/Containers/Data/Application/<APPLICATION_ID>/Documents/SingleViewCoreData.sqlite.
+        
+//        Create New Person
+//        db.createNewPerson()
+        
+//        Update First Person
+//        db.updateFirstPerson()
+        
+//        Delete First Person
+//        db.deleteFirstPerson()
+        
+//        Fetch Person
+        db.getAllPersons()
     }
 }
 

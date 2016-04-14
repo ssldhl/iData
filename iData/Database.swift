@@ -36,4 +36,89 @@ class Database{
             print("Error: \(error.localizedDescription)")
         }
     }
+    
+    func getAllPersons(){
+        // Initialize Fetch Request
+        let fetchRequest: NSFetchRequest = NSFetchRequest()
+        
+        // Create Entity Description
+        let entityDescription: NSEntityDescription = NSEntityDescription.entityForName("Person", inManagedObjectContext: managedObjectContext)!
+        
+        // Configure Fetch Request
+        fetchRequest.entity = entityDescription
+        
+        do {
+            let result: [AnyObject] = try self.managedObjectContext.executeFetchRequest(fetchRequest)
+            if (result.count > 0) {
+                let persons: [NSManagedObject] = result as! [NSManagedObject]
+                
+                for person in persons{
+                    if let first = person.valueForKey("first"), last = person.valueForKey("last"), age = person.valueForKey("age") {
+                        print("First: \(first) | Last: \(last) | Age: \(age)")
+                    }
+                }
+            }
+            
+        } catch let error as NSError{
+            print("Error: \(error.localizedDescription)")
+        }
+    }
+    
+    func updateFirstPerson(){
+        // Initialize Fetch Request
+        let fetchRequest: NSFetchRequest = NSFetchRequest()
+        
+        // Create Entity Description
+        let entityDescription: NSEntityDescription = NSEntityDescription.entityForName("Person", inManagedObjectContext: managedObjectContext)!
+        
+        // Configure Fetch Request
+        fetchRequest.entity = entityDescription
+        
+        do {
+            let result: [AnyObject] = try self.managedObjectContext.executeFetchRequest(fetchRequest)
+            if (result.count > 0) {
+                let person: NSManagedObject = result[0] as! NSManagedObject
+                
+                person.setValue(54, forKey: "age")
+                
+                do {
+                    try person.managedObjectContext?.save()
+                } catch let error as NSError{
+                    print("Error: \(error.localizedDescription)")
+                }
+            }
+            
+        } catch let error as NSError{
+            print("Error: \(error.localizedDescription)")
+        }
+    }
+    
+    func deleteFirstPerson(){
+        // Initialize Fetch Request
+        let fetchRequest: NSFetchRequest = NSFetchRequest()
+        
+        // Create Entity Description
+        let entityDescription: NSEntityDescription = NSEntityDescription.entityForName("Person", inManagedObjectContext: managedObjectContext)!
+        
+        // Configure Fetch Request
+        fetchRequest.entity = entityDescription
+        
+        do {
+            let result: [AnyObject] = try self.managedObjectContext.executeFetchRequest(fetchRequest)
+            if (result.count > 0) {
+                let person: NSManagedObject = result[0] as! NSManagedObject
+                
+                managedObjectContext.deleteObject(person)
+                
+                do {
+                    try person.managedObjectContext?.save()
+                } catch let error as NSError{
+                    print("Error: \(error.localizedDescription)")
+                }
+            }
+            
+        } catch let error as NSError{
+            print("Error: \(error.localizedDescription)")
+        }
+    }
 }
