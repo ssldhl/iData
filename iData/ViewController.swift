@@ -18,7 +18,8 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         simpleDatabase()
-        realtionalDatabase()
+//        realtionalDatabase()
+        fetchDatabase()
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,38 +35,63 @@ class ViewController: UIViewController {
         db.createNewPerson()
         
 //        Update First Person
-        db.updateFirstPerson()
+//        db.updateFirstPerson()
         
 //        Delete First Person
-        db.deleteFirstPerson()
+//        db.deleteFirstPerson()
         
 //        Fetch Person
-        db.getAllPersons()
+//        db.getAllPersons()
     }
     
     func realtionalDatabase(){
 //        Add Address to Person
-        let newPerson: NSManagedObject = db.createNewPerson()
-        let newAddress: NSManagedObject = db.createNewAddress()
-        db.addAddressToPerson(newPerson, newAddress: newAddress)
+//        let newPerson: NSManagedObject = db.createNewPerson()
+//        let newAddress: NSManagedObject = db.createNewAddress()
+//        db.addAddressToPerson(newPerson, newAddress: newAddress)
         
         // Update Relationship
-        let updatePersons: [NSManagedObject] = db.getAllPersons()
-        if(updatePersons.count > 0){
-            let oldPerson: NSManagedObject = updatePersons[0]
-            db.updateRelationship(oldPerson)
-        }else{
-            print("Persons Count: \(updatePersons.count)")
-        }
+//        let updatePersons: [NSManagedObject] = db.getAllPersons()
+//        if(updatePersons.count > 0){
+//            let oldPerson: NSManagedObject = updatePersons[0]
+//            db.updateRelationship(oldPerson)
+//        }else{
+//            print("Persons Count: \(updatePersons.count)")
+//        }
         
         // Delete Relationship
-        let persons: [NSManagedObject] = db.getAllPersons()
-        if(persons.count > 0){
-            let oldPerson: NSManagedObject = persons[0]
-            db.updateRelationship(oldPerson)
-        }else{
-            print("Persons Count: \(persons.count)")
-        }
+//        let persons: [NSManagedObject] = db.getAllPersons()
+//        if(persons.count > 0){
+//            let oldPerson: NSManagedObject = persons[0]
+//            db.updateRelationship(oldPerson)
+//        }else{
+//            print("Persons Count: \(persons.count)")
+//        }
+        
+        // One-to-one relationship
+//        let persons: [NSManagedObject] = db.getAllPersons()
+//        if(persons.count > 0){
+//            let oldPerson: NSManagedObject = persons[0]
+//            db.personWithSpouse(oldPerson)
+//        }else{
+//            print("Persons Count: \(persons.count)")
+//        }
+        
+        // One-to-many relationship
+//        let persons: [NSManagedObject] = db.getAllPersons()
+//        if(persons.count > 0){
+//            let oldPerson: NSManagedObject = persons[0]
+//            db.personFatherChild(oldPerson)
+//        }else{
+//            print("Persons Count: \(persons.count)")
+//        }
+        
+    }
+    
+    func fetchDatabase(){
+        db.sortFetchPerson()
+        
+        db.predicateFetchPerson()
     }
 }
 

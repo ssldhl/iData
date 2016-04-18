@@ -202,4 +202,104 @@ class Database{
             print("Error: \(error.localizedDescription)")
         }
     }
+    
+    func personWithSpouse(newPerson: NSManagedObject){
+        // Create Another Person
+        let entityDescription: NSEntityDescription = NSEntityDescription.entityForName("Person", inManagedObjectContext: managedObjectContext)!
+        let anotherPerson = NSManagedObject(entity: entityDescription, insertIntoManagedObjectContext: managedObjectContext)
+        
+        // Set First and Last Name
+        anotherPerson.setValue("Jane", forKey: "first")
+        anotherPerson.setValue("Doe", forKey: "last")
+        anotherPerson.setValue(42, forKey: "age")
+        
+        // Create Relationship
+        newPerson.setValue(anotherPerson, forKey: "spouse")
+    }
+    
+    func personFatherChild(newPerson: NSManagedObject){
+        // Create a Child Person
+        let entityDescription: NSEntityDescription = NSEntityDescription.entityForName("Person", inManagedObjectContext: managedObjectContext)!
+        let newChildPerson = NSManagedObject(entity: entityDescription, insertIntoManagedObjectContext: self.managedObjectContext)
+        
+        // Set First and Last Name
+        newChildPerson.setValue("Jim", forKey: "first")
+        newChildPerson.setValue("Doe", forKey: "last")
+        newChildPerson.setValue(21, forKey: "age")
+        
+        // Create Relationship
+        let children = newPerson.mutableSetValueForKey("children")
+        children.addObject(newChildPerson)
+         
+         // Add to father
+        
+        // Create Another Child Person
+        let anotherChildPerson = NSManagedObject(entity: entityDescription, insertIntoManagedObjectContext: self.managedObjectContext)
+        
+        // Set First and Last Name
+        anotherChildPerson.setValue("Lucy", forKey: "first")
+        anotherChildPerson.setValue("Doe", forKey: "last")
+        anotherChildPerson.setValue(19, forKey: "age")
+        
+        // Create Relationship
+        anotherChildPerson.setValue(newPerson, forKey: "father")
+    }
+    
+    func sortFetchPerson(){
+        // Create Fetch Request
+        let fetchRequest = NSFetchRequest(entityName: "Person")
+        
+        // Add Sort Descriptor
+        let sortDescriptor1 = NSSortDescriptor(key: "last", ascending: true)
+        let sortDescriptor2 = NSSortDescriptor(key: "age", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor1, sortDescriptor2]
+        
+        // Execute Fetch Request
+        do {
+            let result = try self.managedObjectContext.executeFetchRequest(fetchRequest)
+            
+            for managedObject in result {
+                if let first = managedObject.valueForKey("first"), last = managedObject.valueForKey("last") {
+                    print("\(first) \(last)")
+                }
+            }
+            
+        } catch {
+            let fetchError = error as NSError
+            print(fetchError)
+        }
+    }
+    
+    func predicateFetchPerson(){
+        // Fetching
+        let fetchRequest = NSFetchRequest(entityName: "Person")
+        
+        // Create Predicate
+        let predicate = NSPredicate(format: "%K == %@", "last", "Doe")
+        fetchRequest.predicate = predicate
+        
+        // Add Sort Descriptor
+        let sortDescriptor1 = NSSortDescriptor(key: "last", ascending: true)
+        let sortDescriptor2 = NSSortDescriptor(key: "age", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor1, sortDescriptor2]
+        
+        // Execute Fetch Request
+        do {
+            let result = try self.managedObjectContext.executeFetchRequest(fetchRequest)
+            
+            for managedObject in result {
+                if let first = managedObject.valueForKey("first"), last = managedObject.valueForKey("last"), age = managedObject.valueForKey("age") {
+                    print("\(first) \(last) (\(age))")
+                }
+            }
+            
+        } catch {
+            let fetchError = error as NSError
+            print(fetchError)
+        }
+        
+//        let predicate = NSPredicate(format: "%K CONTAINS[c] %@ AND %K < %i", "first", "j", "age", 30)
+//        let predicate = NSPredicate(format: "%K == %@", "father.first", "Bart")
+    }
+    
 }
