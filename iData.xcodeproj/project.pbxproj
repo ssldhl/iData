@@ -19,6 +19,7 @@
 		77E40F5E1CC4A87900EB9372 /* ItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E40F5D1CC4A87900EB9372 /* ItemTableViewController.swift */; };
 		77E40F601CC4A99F00EB9372 /* ToDoCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E40F5F1CC4A99F00EB9372 /* ToDoCellTableViewCell.swift */; };
 		77E40F621CC4AB1B00EB9372 /* AddToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E40F611CC4AB1B00EB9372 /* AddToDoViewController.swift */; };
+		77E40F641CC4B5B500EB9372 /* UpdateToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E40F631CC4B5B500EB9372 /* UpdateToDoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		77E40F5D1CC4A87900EB9372 /* ItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewController.swift; sourceTree = "<group>"; };
 		77E40F5F1CC4A99F00EB9372 /* ToDoCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoCellTableViewCell.swift; sourceTree = "<group>"; };
 		77E40F611CC4AB1B00EB9372 /* AddToDoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddToDoViewController.swift; sourceTree = "<group>"; };
+		77E40F631CC4B5B500EB9372 /* UpdateToDoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateToDoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 				77E40F5D1CC4A87900EB9372 /* ItemTableViewController.swift */,
 				77E40F5F1CC4A99F00EB9372 /* ToDoCellTableViewCell.swift */,
 				77E40F611CC4AB1B00EB9372 /* AddToDoViewController.swift */,
+				77E40F631CC4B5B500EB9372 /* UpdateToDoViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				77E40F5E1CC4A87900EB9372 /* ItemTableViewController.swift in Sources */,
+				77E40F641CC4B5B500EB9372 /* UpdateToDoViewController.swift in Sources */,
 				77BED5761CBF68AA00E55660 /* ViewController.swift in Sources */,
 				77BED57C1CBF68AA00E55660 /* iData.xcdatamodeld in Sources */,
 				77BED5A81CBF79EE00E55660 /* Database.swift in Sources */,

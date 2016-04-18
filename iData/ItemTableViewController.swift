@@ -83,25 +83,24 @@ class ItemTableViewController: UITableViewController, NSFetchedResultsController
         return cell
     }
 
-    /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
 
-    /*
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            // Fetch Record
+            let record = fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject
+            
+            // Delete Record
+            managedObjectContext.deleteObject(record)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
 
     /*
     // Override to support rearranging the table view.
@@ -117,6 +116,12 @@ class ItemTableViewController: UITableViewController, NSFetchedResultsController
         return true
     }
     */
+    
+    // MARK: -
+    // MARK: Table View Delegate Methods
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
 
     // MARK: - Navigation
 
@@ -128,6 +133,17 @@ class ItemTableViewController: UITableViewController, NSFetchedResultsController
         if segue.identifier == "SegueAddToDoViewController" {
             if let navigationController = segue.destinationViewController as? UINavigationController {
                 if let viewController = navigationController.topViewController as? AddToDoViewController {
+                    viewController.managedObjectContext = managedObjectContext
+                }
+            }
+        }else if segue.identifier == "SegueUpdateToDoViewController" {
+            if let viewController = segue.destinationViewController as? UpdateToDoViewController {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    // Fetch Record
+                    let record = fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject
+                    
+                    // Configure View Controller
+                    viewController.record = record
                     viewController.managedObjectContext = managedObjectContext
                 }
             }
@@ -186,6 +202,12 @@ class ItemTableViewController: UITableViewController, NSFetchedResultsController
         
         if let done = record.valueForKey("done") as? Bool {
             cell.doneButton.selected = done
+        }
+        
+        cell.didTapButtonHandler = {
+            if let done = record.valueForKey("done") as? Bool {
+                record.setValue(!done, forKey: "done")
+            }
         }
     }
 }
