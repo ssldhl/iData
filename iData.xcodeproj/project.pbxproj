@@ -59,6 +59,7 @@
 		77E40F5F1CC4A99F00EB9372 /* ToDoCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoCellTableViewCell.swift; sourceTree = "<group>"; };
 		77E40F611CC4AB1B00EB9372 /* AddToDoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddToDoViewController.swift; sourceTree = "<group>"; };
 		77E40F631CC4B5B500EB9372 /* UpdateToDoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateToDoViewController.swift; sourceTree = "<group>"; };
+		77E40F651CC4C52700EB9372 /* iData 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "iData 2.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -560,9 +561,10 @@
 		77BED57A1CBF68AA00E55660 /* iData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				77E40F651CC4C52700EB9372 /* iData 2.xcdatamodel */,
 				77BED57B1CBF68AA00E55660 /* iData.xcdatamodel */,
 			);
-			currentVersion = 77BED57B1CBF68AA00E55660 /* iData.xcdatamodel */;
+			currentVersion = 77E40F651CC4C52700EB9372 /* iData 2.xcdatamodel */;
 			path = iData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

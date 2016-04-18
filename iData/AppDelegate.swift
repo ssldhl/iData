@@ -84,9 +84,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("SingleViewCoreData.sqlite")
         var failureReason = "There was an error creating or loading the application's saved data."
+        
+        // Declare Options
+        let options = [ NSMigratePersistentStoresAutomaticallyOption : true, NSInferMappingModelAutomaticallyOption : true ]
+        
         do {
-            try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+            try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: options)
         } catch {
+            /*
             // Report any error we got.
             var dict = [String: AnyObject]()
             dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
@@ -97,7 +102,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Replace this with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             NSLog("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
-            abort()
+            */
+            let fm = NSFileManager.defaultManager()
+            
+            if fm.fileExistsAtPath(url.path!) {
+                let nameIncompatibleStore = self.nameForIncompatibleStore()
+                let URLCorruptPersistentStore = self.applicationIncompatibleStoresDirectory().URLByAppendingPathComponent(nameIncompatibleStore)
+                
+                do {
+                    // Move Incompatible Store
+                    try fm.moveItemAtURL(url, toURL: URLCorruptPersistentStore)
+                    
+                } catch {
+                    let moveError = error as NSError
+                    print("\(moveError), \(moveError.userInfo)")
+                }
+            }
+//            abort()
         }
         
         return coordinator
@@ -136,6 +157,61 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let saveError = error as NSError
             print("\(saveError), \(saveError.userInfo)")
         }
+    }
+    
+    private func nameForIncompatibleStore() -> String {
+        // Initialize Date Formatter
+        let dateFormatter = NSDateFormatter()
+        
+        // Configure Date Formatter
+        dateFormatter.formatterBehavior = .Behavior10_4
+        dateFormatter.dateFormat = "yyyy-MM-dd-HH-mm-ss"
+        
+        return "\(dateFormatter.stringFromDate(NSDate())).sqlite"
+    }
+    
+    private func applicationStoresDirectory() -> NSURL {
+        let fm = NSFileManager.defaultManager()
+        
+        // Fetch Application Support Directory
+        let URLs = fm.URLsForDirectory(.ApplicationSupportDirectory, inDomains: .UserDomainMask)
+        let applicationSupportDirectory = URLs[(URLs.count - 1)]
+        
+        // Create Application Stores Directory
+        let URL = applicationSupportDirectory.URLByAppendingPathComponent("Stores")
+        
+        if !fm.fileExistsAtPath(URL.path!) {
+            do {
+                // Create Directory for Stores
+                try fm.createDirectoryAtURL(URL, withIntermediateDirectories: true, attributes: nil)
+                
+            } catch {
+                let createError = error as NSError
+                print("\(createError), \(createError.userInfo)")
+            }
+        }
+        
+        return URL
+    }
+    
+    private func applicationIncompatibleStoresDirectory() -> NSURL {
+        let fm = NSFileManager.defaultManager()
+        
+        // Create Application Incompatible Stores Directory
+        let URL = applicationStoresDirectory().URLByAppendingPathComponent("Incompatible")
+        
+        if !fm.fileExistsAtPath(URL.path!) {
+            do {
+                // Create Directory for Stores
+                try fm.createDirectoryAtURL(URL, withIntermediateDirectories: true, attributes: nil)
+                
+            } catch {
+                let createError = error as NSError
+                print("\(createError), \(createError.userInfo)")
+            }
+        }
+        
+        return URL
     }
 }
 
