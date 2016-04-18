@@ -7,6 +7,11 @@
         <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="persons" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="addresses" inverseEntity="Person" syncable="YES"/>
     </entity>
+    <entity name="Item" syncable="YES">
+        <attribute name="createdAt" attributeType="Date" syncable="YES"/>
+        <attribute name="done" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Person" syncable="YES">
         <attribute name="age" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="first" attributeType="String" syncable="YES"/>
@@ -19,5 +24,6 @@
     <elements>
         <element name="Address" positionX="-36" positionY="36" width="128" height="118"/>
         <element name="Person" positionX="-380" positionY="-72" width="128" height="148"/>
+        <element name="Item" positionX="-207" positionY="27" width="128" height="90"/>
     </elements>
 </model>

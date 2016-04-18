@@ -17,6 +17,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Fetch Main Storyboard
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // Instantiate Root Navigation Controller
+        let rootNavigationController = mainStoryboard.instantiateViewControllerWithIdentifier("StoryboardIDRootNavigationController") as! UINavigationController
+        
+        // Configure View Controller
+        let viewController = rootNavigationController.topViewController as? ItemTableViewController
+        
+        if let viewController = viewController {
+            viewController.managedObjectContext = self.managedObjectContext
+        }
+        
+        // Configure Window
+        window?.rootViewController = rootNavigationController
+        
+        
         return true
     }
 

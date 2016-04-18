@@ -16,6 +16,9 @@
 		77BED58C1CBF68AA00E55660 /* iDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BED58B1CBF68AA00E55660 /* iDataTests.swift */; };
 		77BED5971CBF68AB00E55660 /* iDataUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BED5961CBF68AB00E55660 /* iDataUITests.swift */; };
 		77BED5A81CBF79EE00E55660 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BED5A71CBF79EE00E55660 /* Database.swift */; };
+		77E40F5E1CC4A87900EB9372 /* ItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E40F5D1CC4A87900EB9372 /* ItemTableViewController.swift */; };
+		77E40F601CC4A99F00EB9372 /* ToDoCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E40F5F1CC4A99F00EB9372 /* ToDoCellTableViewCell.swift */; };
+		77E40F621CC4AB1B00EB9372 /* AddToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E40F611CC4AB1B00EB9372 /* AddToDoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		77BED5961CBF68AB00E55660 /* iDataUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iDataUITests.swift; sourceTree = "<group>"; };
 		77BED5981CBF68AB00E55660 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77BED5A71CBF79EE00E55660 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		77E40F5D1CC4A87900EB9372 /* ItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewController.swift; sourceTree = "<group>"; };
+		77E40F5F1CC4A99F00EB9372 /* ToDoCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoCellTableViewCell.swift; sourceTree = "<group>"; };
+		77E40F611CC4AB1B00EB9372 /* AddToDoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddToDoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +149,9 @@
 			isa = PBXGroup;
 			children = (
 				77BED5751CBF68AA00E55660 /* ViewController.swift */,
+				77E40F5D1CC4A87900EB9372 /* ItemTableViewController.swift */,
+				77E40F5F1CC4A99F00EB9372 /* ToDoCellTableViewCell.swift */,
+				77E40F611CC4AB1B00EB9372 /* AddToDoViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -286,10 +295,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77E40F5E1CC4A87900EB9372 /* ItemTableViewController.swift in Sources */,
 				77BED5761CBF68AA00E55660 /* ViewController.swift in Sources */,
 				77BED57C1CBF68AA00E55660 /* iData.xcdatamodeld in Sources */,
 				77BED5A81CBF79EE00E55660 /* Database.swift in Sources */,
+				77E40F621CC4AB1B00EB9372 /* AddToDoViewController.swift in Sources */,
 				77BED5741CBF68AA00E55660 /* AppDelegate.swift in Sources */,
+				77E40F601CC4A99F00EB9372 /* ToDoCellTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +530,7 @@
 				77BED59D1CBF68AB00E55660 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		77BED59E1CBF68AB00E55660 /* Build configuration list for PBXNativeTarget "iDataTests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +539,7 @@
 				77BED5A01CBF68AB00E55660 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		77BED5A11CBF68AB00E55660 /* Build configuration list for PBXNativeTarget "iDataUITests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +548,7 @@
 				77BED5A31CBF68AB00E55660 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
